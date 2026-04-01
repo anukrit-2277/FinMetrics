@@ -4,16 +4,38 @@ import {
   HiOutlineChartPie,
   HiOutlineCreditCard,
   HiOutlineUsers,
+  HiX,
 } from 'react-icons/hi';
 
-function Sidebar() {
+function Sidebar({ isOpen, onClose }) {
   const { hasRole } = useAuth();
 
+  const handleLinkClick = () => {
+    // Close sidebar on mobile after navigation
+    if (window.innerWidth <= 768) {
+      onClose?.();
+    }
+  };
+
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'sidebar-open' : ''}`}>
       <div className="sidebar-brand">
         <div className="sidebar-brand-icon">F</div>
         <span className="sidebar-brand-text">FinMetrics</span>
+        {/* Close button — visible only on mobile */}
+        <button
+          className="sidebar-close-btn"
+          onClick={onClose}
+          style={{
+            marginLeft: 'auto',
+            display: 'none',
+            fontSize: 20,
+            color: '#737373',
+            padding: 4,
+          }}
+        >
+          <HiX />
+        </button>
       </div>
 
       <nav className="sidebar-nav">
@@ -24,6 +46,7 @@ function Sidebar() {
           className={({ isActive }) =>
             `sidebar-link ${isActive ? 'active' : ''}`
           }
+          onClick={handleLinkClick}
         >
           <HiOutlineChartPie className="sidebar-link-icon" />
           Dashboard
@@ -35,6 +58,7 @@ function Sidebar() {
             className={({ isActive }) =>
               `sidebar-link ${isActive ? 'active' : ''}`
             }
+            onClick={handleLinkClick}
           >
             <HiOutlineCreditCard className="sidebar-link-icon" />
             Transactions
@@ -49,6 +73,7 @@ function Sidebar() {
               className={({ isActive }) =>
                 `sidebar-link ${isActive ? 'active' : ''}`
               }
+              onClick={handleLinkClick}
             >
               <HiOutlineUsers className="sidebar-link-icon" />
               User Management

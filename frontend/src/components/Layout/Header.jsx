@@ -6,6 +6,7 @@ import {
   HiOutlineKey,
   HiOutlineLogout,
   HiOutlineChevronDown,
+  HiOutlineMenu,
 } from 'react-icons/hi';
 
 const pageTitles = {
@@ -16,7 +17,7 @@ const pageTitles = {
   '/change-password': 'Change Password',
 };
 
-function Header() {
+function Header({ onMenuToggle }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -51,7 +52,17 @@ function Header() {
 
   return (
     <header className="header">
-      <h1 className="header-title">{title}</h1>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        {/* Hamburger — visible only on mobile */}
+        <button
+          className="hamburger-btn"
+          onClick={onMenuToggle}
+          aria-label="Toggle menu"
+        >
+          <HiOutlineMenu />
+        </button>
+        <h1 className="header-title">{title}</h1>
+      </div>
 
       {/* User menu on the right */}
       <div className="header-actions" ref={menuRef} style={{ position: 'relative' }}>
@@ -84,7 +95,7 @@ function Header() {
           }}>
             {user ? getInitials(user.name) : '?'}
           </div>
-          <div style={{ textAlign: 'left' }}>
+          <div className="header-user-info" style={{ textAlign: 'left' }}>
             <div style={{ fontSize: 13, fontWeight: 600, color: '#ffffff', lineHeight: 1.2 }}>{user?.name}</div>
             <div style={{ fontSize: 11, color: '#737373' }}>{user?.role}</div>
           </div>

@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import TransactionFilters from '../components/Transactions/TransactionFilters';
 import TransactionList from '../components/Transactions/TransactionList';
 import TransactionForm from '../components/Transactions/TransactionForm';
+import ConfirmModal from '../components/Common/ConfirmModal';
 import { HiOutlinePlus } from 'react-icons/hi';
 
 function TransactionsPage() {
@@ -17,6 +18,7 @@ function TransactionsPage() {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingTx, setEditingTx] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
 
   const [filters, setFilters] = useState({
     type: '',
@@ -86,14 +88,15 @@ function TransactionsPage() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this transaction?')) return;
+  const handleDeleteConfirm = async () => {
     try {
-      await api.delete(`/transactions/${id}`);
+      await api.delete(`/transactions/${deleteId}`);
       toast.success('Transaction deleted');
+      setDeleteId(null);
       fetchTransactions();
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to delete transaction');
+      setDeleteId(null);
     }
   };
 
@@ -138,7 +141,7 @@ function TransactionsPage() {
           pagination={pagination}
           onPageChange={handlePageChange}
           onEdit={(tx) => setEditingTx(tx)}
-          onDelete={handleDelete}
+          onDelete={(id) => setDeleteId(id)}
           canModify={canModify}
         />
       )}
@@ -157,6 +160,17 @@ function TransactionsPage() {
           onClose={() => setEditingTx(null)}
         />
       )}
+
+      <ConfirmModal
+        open={deleteId !== null}
+        title="Delete Transaction"
+        message="Are you sure you want to delete this transaction? This action cannot be undone."
+        confirmText="Delete"
+        cancelText="Cancel"
+        variant="danger"
+        onConfirm={handleDeleteConfirm}
+        onCancel={() => setDeleteId(null)}
+      />
     </div>
   );
 }

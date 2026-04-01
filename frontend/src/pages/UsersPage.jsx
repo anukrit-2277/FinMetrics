@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import api from '../api/client';
 import UserList from '../components/Users/UserList';
 import UserForm from '../components/Users/UserForm';
+import ConfirmModal from '../components/Common/ConfirmModal';
 import { HiOutlineUserAdd } from 'react-icons/hi';
 
 function UsersPage() {
@@ -11,6 +12,7 @@ function UsersPage() {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
+  const [toggleUser, setToggleUser] = useState(null);
 
   useEffect(() => {
     fetchUsers();
@@ -60,10 +62,9 @@ function UsersPage() {
     }
   };
 
-  const handleToggleStatus = async (user) => {
+  const handleToggleConfirm = async () => {
+    const user = toggleUser;
     const action = user.isActive ? 'deactivate' : 'activate';
-    if (!window.confirm(`Are you sure you want to ${action} ${user.name}?`)) return;
-
     try {
       if (user.isActive) {
         await api.delete(`/users/${user.id}`);
@@ -72,9 +73,11 @@ function UsersPage() {
         await api.put(`/users/${user.id}`, { isActive: true });
         toast.success(`${user.name} activated`);
       }
+      setToggleUser(null);
       fetchUsers();
     } catch (err) {
       toast.error(err.response?.data?.message || `Failed to ${action} user`);
+      setToggleUser(null);
     }
   };
 
@@ -103,7 +106,7 @@ function UsersPage() {
         <UserList
           users={users}
           onEdit={(u) => setEditingUser(u)}
-          onToggleStatus={handleToggleStatus}
+          onToggleStatus={(u) => setToggleUser(u)}
         />
       )}
 
@@ -123,6 +126,17 @@ function UsersPage() {
           onClose={() => setEditingUser(null)}
         />
       )}
+
+      <ConfirmModal
+        open={toggleUser !== null}
+        title={toggleUser?.isActive ? 'Deactivate User' : 'Activate User'}
+        message={toggleUser ? `Are you sure you want to ${toggleUser.isActive ? 'deactivate' : 'activate'} ${toggleUser.name}?` : ''}
+        confirmText={toggleUser?.isActive ? 'Deactivate' : 'Activate'}
+        cancelText="Cancel"
+        variant={toggleUser?.isActive ? 'danger' : 'default'}
+        onConfirm={handleToggleConfirm}
+        onCancel={() => setToggleUser(null)}
+      />
     </div>
   );
 }

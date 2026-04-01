@@ -27,7 +27,7 @@ function ProfilePage() {
         </div>
       </div>
 
-      <div className="card" style={{ maxWidth: 520 }}>
+      <div className="card" style={{ maxWidth: 520, margin: '0 auto' }}>
         {/* Avatar + Name */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 28, paddingBottom: 24, borderBottom: '1px solid #2a2a2a' }}>
           <div style={{

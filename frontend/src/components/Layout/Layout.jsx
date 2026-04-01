@@ -1,29 +1,31 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
 function Layout() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="app-layout">
-      <Sidebar />
-      <Header />
+      {/* Mobile sidebar overlay */}
+      <div
+        className={`sidebar-overlay ${sidebarOpen ? 'visible' : ''}`}
+        onClick={() => setSidebarOpen(false)}
+      />
+
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
+
       <main className="main-content">
         <div style={{ flex: 1 }}>
           <Outlet />
         </div>
+      </main>
 
-        {/* Footer — always at bottom */}
-        <footer style={{
-          marginTop: 48,
-          padding: '20px 0',
-          borderTop: '1px solid #2a2a2a',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          fontSize: 12,
-          color: '#737373',
-          flexShrink: 0,
-        }}>
+      {/* Full-width footer */}
+      <footer className="app-footer">
+        <div className="app-footer-inner">
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{
               width: 20,
@@ -41,8 +43,8 @@ function Layout() {
             <span>— Finance Dashboard</span>
           </div>
           <span>© {new Date().getFullYear()} • Built with React, Express & PostgreSQL</span>
-        </footer>
-      </main>
+        </div>
+      </footer>
     </div>
   );
 }

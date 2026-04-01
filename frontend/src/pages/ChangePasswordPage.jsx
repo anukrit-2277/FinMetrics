@@ -75,7 +75,7 @@ function ChangePasswordPage() {
         </div>
       </div>
 
-      <div className="card" style={{ maxWidth: 480 }}>
+      <div className="card" style={{ maxWidth: 480, margin: '0 auto' }}>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label">
