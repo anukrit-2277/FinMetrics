@@ -57,8 +57,11 @@ function LoginPage() {
 
           {/* Role Toggle Buttons */}
           <div style={{ marginBottom: 28 }}>
-            <p style={{ fontSize: 11, color: '#737373', marginBottom: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
-              Quick Login As
+            <p style={{ fontSize: 11, color: '#737373', marginBottom: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
+              Select Role to Login
+            </p>
+            <p style={{ fontSize: 11, color: '#737373', marginBottom: 12 }}>
+              Prototype Mode — credentials auto-fill on selecting a role
             </p>
             <div style={{ display: 'flex', gap: 10 }}>
               {DEMO_ACCOUNTS.map((account) => (
