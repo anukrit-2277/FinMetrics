@@ -7,6 +7,7 @@ import {
   HiOutlineLogout,
 } from 'react-icons/hi';
 
+
 function Sidebar() {
   const { user, logout, hasRole } = useAuth();
 
