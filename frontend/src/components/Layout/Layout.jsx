@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
@@ -42,7 +42,21 @@ function Layout() {
             <span style={{ fontWeight: 600, color: '#a3a3a3' }}>FinMetrics</span>
             <span>— Finance Dashboard</span>
           </div>
-          <span>© {new Date().getFullYear()} • Built with React, Express & PostgreSQL</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <Link
+              to="/docs"
+              target="_blank"
+              style={{
+                fontSize: 12,
+                color: '#dc2626',
+                fontWeight: 600,
+                transition: 'color 0.2s',
+              }}
+            >
+              📄 API Docs
+            </Link>
+            <span>© {new Date().getFullYear()} • React, Express & PostgreSQL</span>
+          </div>
         </div>
       </footer>
     </div>

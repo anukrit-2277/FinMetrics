@@ -5,6 +5,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const sessionConfig = require('./config/session');
 const { errorHandler } = require('./middleware/errorHandler');
+const { apiLimiter } = require('./middleware/rateLimiter');
 
 // Route imports
 const authRoutes = require('./routes/auth.routes');
@@ -35,6 +36,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // ─── API Routes ──────────────────────────────────────────────
+app.use('/api', apiLimiter);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/transactions', transactionRoutes);
@@ -51,11 +53,13 @@ app.use((req, res) => {
 // ─── Global Error Handler ────────────────────────────────────
 app.use(errorHandler);
 
-// ─── Start Server ────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`\n🚀 FinMetrics Backend running on http://localhost:${PORT}`);
-  console.log(`📋 Health check: http://localhost:${PORT}/api/health`);
-  console.log(`🔧 Environment: ${process.env.NODE_ENV || 'development'}\n`);
-});
+// ─── Start Server (only when run directly) ──────────────────
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`\n🚀 FinMetrics Backend running on http://localhost:${PORT}`);
+    console.log(`📋 Health check: http://localhost:${PORT}/api/health`);
+    console.log(`🔧 Environment: ${process.env.NODE_ENV || 'development'}\n`);
+  });
+}
 
 module.exports = app;

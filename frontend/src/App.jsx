@@ -9,6 +9,7 @@ import TransactionsPage from './pages/TransactionsPage';
 import UsersPage from './pages/UsersPage';
 import ProfilePage from './pages/ProfilePage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
+import DocsPage from './pages/DocsPage';
 
 function App() {
   const { loading } = useAuth();
@@ -74,6 +75,7 @@ function App() {
             }
           />
         </Route>
+        <Route path="/docs" element={<DocsPage />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </>

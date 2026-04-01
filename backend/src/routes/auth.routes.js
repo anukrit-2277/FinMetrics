@@ -4,9 +4,10 @@ const authController = require('../controllers/auth.controller');
 const { isAuthenticated } = require('../middleware/auth');
 const { validate } = require('../middleware/validate');
 const { loginValidator, changePasswordValidator } = require('../validators/auth.validator');
+const { authLimiter } = require('../middleware/rateLimiter');
 
-// POST /api/auth/login
-router.post('/login', validate(loginValidator), authController.login);
+// POST /api/auth/login (rate limited)
+router.post('/login', authLimiter, validate(loginValidator), authController.login);
 
 // POST /api/auth/logout
 router.post('/logout', isAuthenticated, authController.logout);
@@ -14,7 +15,7 @@ router.post('/logout', isAuthenticated, authController.logout);
 // GET /api/auth/me
 router.get('/me', isAuthenticated, authController.me);
 
-// PUT /api/auth/change-password
-router.put('/change-password', isAuthenticated, validate(changePasswordValidator), authController.changePassword);
+// PUT /api/auth/change-password (rate limited)
+router.put('/change-password', isAuthenticated, authLimiter, validate(changePasswordValidator), authController.changePassword);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { HiOutlineMail, HiOutlineLockClosed, HiOutlineShieldCheck } from 'react-icons/hi';
 
@@ -195,9 +195,12 @@ function LoginPage() {
           <span style={{ fontSize: 12, color: '#737373' }}>
             React • Express • PostgreSQL • Prisma
           </span>
-          <span style={{ fontSize: 12, color: '#737373' }}>
-            © {new Date().getFullYear()}
-          </span>
+          <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+            <Link to="/docs" target="_blank" style={{ fontSize: 12, color: '#dc2626', fontWeight: 600 }}>📄 API Docs</Link>
+            <span style={{ fontSize: 12, color: '#737373' }}>
+              © {new Date().getFullYear()}
+            </span>
+          </div>
         </div>
       </footer>
     </div>
