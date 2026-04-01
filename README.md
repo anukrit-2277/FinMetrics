@@ -241,6 +241,7 @@ NODE_ENV=<development_or_production>
 | `GET` | `/api/dashboard/recent` | Last 10 transactions | All |
 | `GET` | `/api/dashboard/category-totals` | Category-wise breakdown | Analyst, Admin |
 | `GET` | `/api/dashboard/trends` | Monthly income/expense trends (12 months) | Analyst, Admin |
+| `GET` | `/api/dashboard/insights` | Rule-based financial insights | Analyst, Admin |
 
 ### Health Check
 

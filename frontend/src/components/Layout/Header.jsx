@@ -13,6 +13,7 @@ import {
 const pageTitles = {
   '/dashboard': 'Dashboard',
   '/transactions': 'Transactions',
+  '/insights': 'Financial Insights',
   '/users': 'User Management',
   '/profile': 'My Profile',
   '/change-password': 'Change Password',

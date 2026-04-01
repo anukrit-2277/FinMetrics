@@ -19,4 +19,15 @@ router.get('/category-totals', authorize('ANALYST', 'ADMIN'), dashboardControlle
 // GET /api/dashboard/trends — Monthly trends (Analyst+ only)
 router.get('/trends', authorize('ANALYST', 'ADMIN'), dashboardController.getTrends);
 
+// GET /api/dashboard/insights — AI-powered insights (Analyst+ only)
+router.get('/insights', authorize('ANALYST', 'ADMIN'), async (req, res, next) => {
+  try {
+    const insightsService = require('../services/insights.service');
+    const insights = await insightsService.getInsights();
+    res.json({ success: true, data: insights });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

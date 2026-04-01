@@ -331,6 +331,7 @@ function DocsPage() {
                   <tr><td><span className="docs-method get">GET</span></td><td><code>/api/dashboard/recent</code></td><td>Last 10 transactions</td><td>All</td></tr>
                   <tr><td><span className="docs-method get">GET</span></td><td><code>/api/dashboard/category-totals</code></td><td>Category-wise breakdown</td><td>Analyst+</td></tr>
                   <tr><td><span className="docs-method get">GET</span></td><td><code>/api/dashboard/trends</code></td><td>Monthly trends (12 months)</td><td>Analyst+</td></tr>
+                  <tr><td><span className="docs-method get">GET</span></td><td><code>/api/dashboard/insights</code></td><td>Rule-based financial insights</td><td>Analyst+</td></tr>
                 </tbody>
               </table>
             </div>
@@ -507,8 +508,8 @@ NODE_ENV=<development_or_production>`}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>General API (<code>/api/*</code>)</td><td>100 requests</td><td>15 minutes</td></tr>
-                  <tr><td>Auth routes (login, change password)</td><td>10 requests</td><td>15 minutes</td></tr>
+                  <tr><td>General API (<code>/api/*</code>)</td><td>500 requests</td><td>15 minutes</td></tr>
+                  <tr><td>Auth routes (login, change password)</td><td>30 requests</td><td>15 minutes</td></tr>
                 </tbody>
               </table>
             </div>

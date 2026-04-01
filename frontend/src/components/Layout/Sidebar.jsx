@@ -4,6 +4,7 @@ import {
   HiOutlineChartPie,
   HiOutlineCreditCard,
   HiOutlineUsers,
+  HiOutlineLightBulb,
   HiX,
 } from 'react-icons/hi';
 
@@ -62,6 +63,19 @@ function Sidebar({ isOpen, onClose }) {
           >
             <HiOutlineCreditCard className="sidebar-link-icon" />
             Transactions
+          </NavLink>
+        )}
+
+        {hasRole('ANALYST', 'ADMIN') && (
+          <NavLink
+            to="/insights"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? 'active' : ''}`
+            }
+            onClick={handleLinkClick}
+          >
+            <HiOutlineLightBulb className="sidebar-link-icon" />
+            Insights
           </NavLink>
         )}
 

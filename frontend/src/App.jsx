@@ -9,6 +9,7 @@ import TransactionsPage from './pages/TransactionsPage';
 import UsersPage from './pages/UsersPage';
 import ProfilePage from './pages/ProfilePage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
+import InsightsPage from './pages/InsightsPage';
 import DocsPage from './pages/DocsPage';
 
 function App() {
@@ -61,6 +62,14 @@ function App() {
             element={
               <ProtectedRoute requiredRoles={['ANALYST', 'ADMIN']}>
                 <TransactionsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="insights"
+            element={
+              <ProtectedRoute requiredRoles={['ANALYST', 'ADMIN']}>
+                <InsightsPage />
               </ProtectedRoute>
             }
           />
