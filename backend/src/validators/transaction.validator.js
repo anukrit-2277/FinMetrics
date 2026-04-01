@@ -2,8 +2,8 @@ const { body } = require('express-validator');
 
 const createTransactionValidator = [
   body('amount')
-    .isFloat({ min: 0.01 })
-    .withMessage('Amount must be a positive number'),
+    .isFloat({ min: 0.01, max: 9999999999.99 })
+    .withMessage('Amount must be between 0.01 and 9,999,999,999.99'),
   body('type')
     .isIn(['INCOME', 'EXPENSE'])
     .withMessage('Type must be INCOME or EXPENSE'),
@@ -24,8 +24,8 @@ const createTransactionValidator = [
 const updateTransactionValidator = [
   body('amount')
     .optional()
-    .isFloat({ min: 0.01 })
-    .withMessage('Amount must be a positive number'),
+    .isFloat({ min: 0.01, max: 9999999999.99 })
+    .withMessage('Amount must be between 0.01 and 9,999,999,999.99'),
   body('type')
     .optional()
     .isIn(['INCOME', 'EXPENSE'])

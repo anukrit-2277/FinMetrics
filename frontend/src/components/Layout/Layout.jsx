@@ -8,9 +8,11 @@ function Layout() {
       <Sidebar />
       <Header />
       <main className="main-content">
-        <Outlet />
+        <div style={{ flex: 1 }}>
+          <Outlet />
+        </div>
 
-        {/* Footer */}
+        {/* Footer — always at bottom */}
         <footer style={{
           marginTop: 48,
           padding: '20px 0',
@@ -20,6 +22,7 @@ function Layout() {
           justifyContent: 'space-between',
           fontSize: 12,
           color: '#737373',
+          flexShrink: 0,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{

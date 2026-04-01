@@ -63,6 +63,7 @@ function TransactionForm({ transaction, onSubmit, onClose }) {
                   placeholder="0.00"
                   step="0.01"
                   min="0.01"
+                  max="9999999999.99"
                   value={form.amount}
                   onChange={(e) => handleChange('amount', e.target.value)}
                   required

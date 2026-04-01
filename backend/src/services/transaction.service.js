@@ -1,4 +1,5 @@
 const prisma = require('../config/db');
+const { Prisma } = require('@prisma/client');
 
 class TransactionService {
   async getAll(filters = {}) {
@@ -77,7 +78,7 @@ class TransactionService {
   async create(data, userId) {
     return prisma.transaction.create({
       data: {
-        amount: parseFloat(data.amount),
+        amount: new Prisma.Decimal(parseFloat(data.amount).toFixed(2)),
         type: data.type,
         category: data.category,
         date: new Date(data.date),
@@ -94,7 +95,7 @@ class TransactionService {
 
   async update(id, data) {
     const updateData = {};
-    if (data.amount !== undefined) updateData.amount = parseFloat(data.amount);
+    if (data.amount !== undefined) updateData.amount = new Prisma.Decimal(parseFloat(data.amount).toFixed(2));
     if (data.type) updateData.type = data.type;
     if (data.category) updateData.category = data.category;
     if (data.date) updateData.date = new Date(data.date);

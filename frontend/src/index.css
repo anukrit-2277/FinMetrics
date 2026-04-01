@@ -231,8 +231,14 @@ button, a, input, textarea, select {
   padding: 24px 28px;
   padding-top: calc(var(--header-height) + 24px);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   position: relative;
   z-index: 1;
+}
+
+.main-content > *:first-child {
+  flex: 1;
 }
 
 /* ─── Sidebar ───────────────────────────────────────── */
