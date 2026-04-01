@@ -145,9 +145,9 @@ npm run dev    # runs on http://localhost:5173
 
 | Role | Email | Password |
 |------|-------|----------|
-| Admin | admin@finmetrics.com | `Admin@2025!` |
-| Analyst | analyst@finmetrics.com | `Analyst@2025!` |
-| Viewer | viewer@finmetrics.com | `Viewer@2025!` |
+| Admin | `<admin_email>` | `<admin_password>` |
+| Analyst | `<analyst_email>` | `<analyst_password>` |
+| Viewer | `<viewer_email>` | `<viewer_password>` |
 
 ---
 

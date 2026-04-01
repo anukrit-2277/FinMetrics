@@ -463,9 +463,9 @@ npm run dev               # http://localhost:5173`}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td><span className="docs-role admin">Admin</span></td><td><code>admin@finmetrics.com</code></td><td><code>Admin@2025!</code></td></tr>
-                  <tr><td><span className="docs-role analyst">Analyst</span></td><td><code>analyst@finmetrics.com</code></td><td><code>Analyst@2025!</code></td></tr>
-                  <tr><td><span className="docs-role viewer">Viewer</span></td><td><code>viewer@finmetrics.com</code></td><td><code>Viewer@2025!</code></td></tr>
+                  <tr><td><span className="docs-role admin">Admin</span></td><td><code>&lt;admin_email&gt;</code></td><td><code>&lt;admin_password&gt;</code></td></tr>
+                  <tr><td><span className="docs-role analyst">Analyst</span></td><td><code>&lt;analyst_email&gt;</code></td><td><code>&lt;analyst_password&gt;</code></td></tr>
+                  <tr><td><span className="docs-role viewer">Viewer</span></td><td><code>&lt;viewer_email&gt;</code></td><td><code>&lt;viewer_password&gt;</code></td></tr>
                 </tbody>
               </table>
             </div>

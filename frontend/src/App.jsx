@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useAuth } from './context/AuthContext';
 import Layout from './components/Layout/Layout';
@@ -11,9 +12,18 @@ import ProfilePage from './pages/ProfilePage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import InsightsPage from './pages/InsightsPage';
 import DocsPage from './pages/DocsPage';
+import api from './api/client';
 
 function App() {
   const { loading } = useAuth();
+
+  // Keep-alive ping — prevents backend cold start on free-tier hosting
+  useEffect(() => {
+    const ping = () => api.get('/health').catch(() => {});
+    ping(); // initial ping on app load
+    const interval = setInterval(ping, 4 * 60 * 1000); // every 4 minutes
+    return () => clearInterval(interval);
+  }, []);
 
   if (loading) {
     return (
