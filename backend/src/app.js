@@ -1,0 +1,61 @@
+require('dotenv').config();
+
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const sessionConfig = require('./config/session');
+const { errorHandler } = require('./middleware/errorHandler');
+
+// Route imports
+const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
+const transactionRoutes = require('./routes/transaction.routes');
+const dashboardRoutes = require('./routes/dashboard.routes');
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// ─── Global Middleware ───────────────────────────────────────
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+app.use(sessionConfig);
+
+// ─── Health Check ────────────────────────────────────────────
+app.get('/api/health', (req, res) => {
+  res.json({
+    success: true,
+    message: 'FinMetrics API is running',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// ─── API Routes ──────────────────────────────────────────────
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/transactions', transactionRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+
+// ─── 404 Handler ─────────────────────────────────────────────
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.method} ${req.url} not found`,
+  });
+});
+
+// ─── Global Error Handler ────────────────────────────────────
+app.use(errorHandler);
+
+// ─── Start Server ────────────────────────────────────────────
+app.listen(PORT, () => {
+  console.log(`\n🚀 FinMetrics Backend running on http://localhost:${PORT}`);
+  console.log(`📋 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`🔧 Environment: ${process.env.NODE_ENV || 'development'}\n`);
+});
+
+module.exports = app;
