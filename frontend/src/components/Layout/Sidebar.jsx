@@ -29,15 +29,17 @@ function Sidebar() {
           Dashboard
         </NavLink>
 
-        <NavLink
-          to="/transactions"
-          className={({ isActive }) =>
-            `sidebar-link ${isActive ? 'active' : ''}`
-          }
-        >
-          <HiOutlineCreditCard className="sidebar-link-icon" />
-          Transactions
-        </NavLink>
+        {hasRole('ANALYST', 'ADMIN') && (
+          <NavLink
+            to="/transactions"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? 'active' : ''}`
+            }
+          >
+            <HiOutlineCreditCard className="sidebar-link-icon" />
+            Transactions
+          </NavLink>
+        )}
 
         {hasRole('ADMIN') && (
           <>

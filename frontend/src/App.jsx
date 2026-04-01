@@ -55,7 +55,14 @@ function App() {
         >
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
-          <Route path="transactions" element={<TransactionsPage />} />
+          <Route
+            path="transactions"
+            element={
+              <ProtectedRoute requiredRoles={['ANALYST', 'ADMIN']}>
+                <TransactionsPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="change-password" element={<ChangePasswordPage />} />
           <Route
