@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 
 function UserForm({ user, roles, onSubmit, onClose }) {
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -26,15 +27,22 @@ function UserForm({ user, roles, onSubmit, onClose }) {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { ...form };
-    if (isEditing) {
-      // Don't send password or email on update
-      delete data.password;
-      delete data.email;
+    if (loading) return;
+    setLoading(true);
+    try {
+      const data = { ...form };
+      if (isEditing) {
+        delete data.password;
+        delete data.email;
+      }
+      await onSubmit(data);
+    } catch {
+      // error handled by parent
+    } finally {
+      setLoading(false);
     }
-    onSubmit(data);
   };
 
   return (
@@ -121,8 +129,9 @@ function UserForm({ user, roles, onSubmit, onClose }) {
             <button type="button" className="btn btn-secondary" onClick={onClose}>
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary">
-              {isEditing ? 'Update' : 'Create'}
+            <button type="submit" className="btn btn-primary" disabled={loading} style={{ opacity: loading ? 0.7 : 1, position: 'relative' }}>
+              {loading && <span className="spinner" style={{ width: 16, height: 16, borderWidth: 2, position: 'absolute', left: 12 }} />}
+              {loading ? 'Saving...' : (isEditing ? 'Update' : 'Create')}
             </button>
           </div>
         </form>
