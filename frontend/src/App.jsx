@@ -7,6 +7,8 @@ import ProtectedRoute from './components/Auth/ProtectedRoute';
 import DashboardPage from './pages/DashboardPage';
 import TransactionsPage from './pages/TransactionsPage';
 import UsersPage from './pages/UsersPage';
+import ProfilePage from './pages/ProfilePage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
 
 function App() {
   const { loading } = useAuth();
@@ -54,6 +56,8 @@ function App() {
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="transactions" element={<TransactionsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="change-password" element={<ChangePasswordPage />} />
           <Route
             path="users"
             element={

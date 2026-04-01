@@ -42,6 +42,20 @@ class AuthController {
       data: req.session.user,
     });
   }
+
+  async changePassword(req, res, next) {
+    try {
+      const { currentPassword, newPassword } = req.body;
+      const result = await authService.changePassword(
+        req.session.user.id,
+        currentPassword,
+        newPassword
+      );
+      return res.status(200).json({ success: true, message: result.message });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = new AuthController();
