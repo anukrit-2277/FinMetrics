@@ -19,8 +19,8 @@ const CustomTooltip = ({ active, payload }) => {
   return (
     <div
       style={{
-        background: '#1e293b',
-        border: '1px solid rgba(255,255,255,0.1)',
+        background: '#1a1a1a',
+        border: '1px solid #2a2a2a',
         borderRadius: 8,
         padding: '10px 14px',
         fontSize: 13,
@@ -84,7 +84,7 @@ function CategoryChart({ data }) {
           </Pie>
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ fontSize: 12, color: '#94a3b8' }}
+            wrapperStyle={{ fontSize: 12, color: '#a3a3a3' }}
             iconType="circle"
             iconSize={8}
           />

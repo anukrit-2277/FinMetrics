@@ -52,7 +52,7 @@ function UserList({ users, onEdit, onToggleStatus }) {
                         height: 32,
                         borderRadius: '50%',
                         background: user.isActive
-                          ? 'linear-gradient(135deg, #14b8a6, #8b5cf6)'
+                          ? 'linear-gradient(135deg, #dc2626, #991b1b)'
                           : 'rgba(100,116,139,0.3)',
                         display: 'flex',
                         alignItems: 'center',

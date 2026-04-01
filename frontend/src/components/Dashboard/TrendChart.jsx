@@ -14,14 +14,14 @@ const CustomTooltip = ({ active, payload, label }) => {
   return (
     <div
       style={{
-        background: '#1e293b',
-        border: '1px solid rgba(255,255,255,0.1)',
+        background: '#1a1a1a',
+        border: '1px solid #2a2a2a',
         borderRadius: 8,
         padding: '10px 14px',
         fontSize: 13,
       }}
     >
-      <div style={{ fontWeight: 600, marginBottom: 6, color: '#94a3b8' }}>
+      <div style={{ fontWeight: 600, marginBottom: 6, color: '#a3a3a3' }}>
         {label}
       </div>
       {payload.map((p) => (
@@ -64,20 +64,20 @@ function TrendChart({ data }) {
               <stop offset="100%" stopColor="#f97316" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" />
           <XAxis
             dataKey="month"
-            tick={{ fill: '#64748b', fontSize: 12 }}
-            axisLine={{ stroke: 'rgba(255,255,255,0.06)' }}
+            tick={{ fill: '#737373', fontSize: 12 }}
+            axisLine={{ stroke: '#2a2a2a' }}
           />
           <YAxis
-            tick={{ fill: '#64748b', fontSize: 12 }}
-            axisLine={{ stroke: 'rgba(255,255,255,0.06)' }}
+            tick={{ fill: '#737373', fontSize: 12 }}
+            axisLine={{ stroke: '#2a2a2a' }}
             tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ fontSize: 12, color: '#94a3b8' }}
+            wrapperStyle={{ fontSize: 12, color: '#a3a3a3' }}
             iconType="circle"
             iconSize={8}
           />
