@@ -1343,8 +1343,38 @@ button, a, input, textarea, select {
 }
 
 /* Docs Responsive */
+
+/* Tablet — docs */
+@media (max-width: 1024px) {
+  .docs-content {
+    max-width: 100%;
+    padding: 32px 28px 60px;
+  }
+  .docs-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile — docs */
 @media (max-width: 768px) {
+  .docs-topbar {
+    padding: 0 12px;
+    height: 48px;
+  }
+  .docs-back-link {
+    font-size: 12px;
+    gap: 4px;
+  }
+  .docs-topbar-title {
+    display: none;
+  }
+  .docs-layout {
+    padding-top: 48px;
+  }
   .docs-sidebar {
+    position: fixed;
+    top: 48px;
+    height: calc(100vh - 48px);
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     z-index: 300;
@@ -1361,11 +1391,80 @@ button, a, input, textarea, select {
   }
   .docs-content {
     margin-left: 0;
-    padding: 24px 16px 60px;
+    padding: 20px 14px 60px;
+    max-width: 100%;
   }
-  .docs-mobile-toggle { display: flex; }
-  .docs-features-grid { grid-template-columns: 1fr; }
-  .docs-hero-title { font-size: 28px; }
+  .docs-mobile-toggle {
+    display: flex;
+  }
+  .docs-hero-title {
+    font-size: 24px;
+  }
+  .docs-hero-subtitle {
+    font-size: 13px;
+  }
+  .docs-section h2 {
+    font-size: 18px;
+  }
+  .docs-section h3 {
+    font-size: 14px;
+  }
+  .docs-section p {
+    font-size: 13px;
+  }
+  .docs-features-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .docs-feature-card {
+    padding: 14px;
+  }
+  .docs-feature-card h4 {
+    font-size: 13px;
+  }
+  .docs-feature-card p {
+    font-size: 12px;
+  }
+  .docs-table-wrapper {
+    border-radius: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .docs-table th,
+  .docs-table td {
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .docs-table td code {
+    font-size: 11px;
+  }
+  .docs-code-block pre {
+    padding: 12px;
+  }
+  .docs-code-block code {
+    font-size: 11px;
+  }
+  .docs-code-title {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+  .docs-list li {
+    font-size: 12.5px;
+  }
+  .docs-section code {
+    font-size: 11px;
+    word-break: break-all;
+  }
+  .docs-method {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  .docs-role-badge {
+    font-size: 10px;
+  }
+  .docs-footer p {
+    font-size: 11px;
+  }
 }
 
 /* ─── Responsive ────────────────────────────────────── */
