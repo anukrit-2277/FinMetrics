@@ -5,8 +5,8 @@ import { HiOutlineMail, HiOutlineLockClosed, HiOutlineShieldCheck } from 'react-
 
 const DEMO_ACCOUNTS = [
   { role: 'Admin', email: 'admin@finmetrics.com', password: 'Admin@2025!', color: '#dc2626', desc: 'Full access' },
-  { role: 'Analyst', email: 'analyst@finmetrics.com', password: 'Analyst@2025!', color: '#10b981', desc: 'Read + analytics' },
-  { role: 'Viewer', email: 'viewer@finmetrics.com', password: 'Viewer@2025!', color: '#3b82f6', desc: 'Read only' },
+  { role: 'Analyst', email: 'analyst@finmetrics.com', password: 'Analyst@2025!', color: '#dc2626', desc: 'Read + analytics' },
+  { role: 'Viewer', email: 'viewer@finmetrics.com', password: 'Viewer@2025!', color: '#dc2626', desc: 'Read only' },
 ];
 
 function LoginPage() {
@@ -46,6 +46,28 @@ function LoginPage() {
 
   return (
     <div className="login-page" style={{ flexDirection: 'column' }}>
+      {/* Prototype notice */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        background: 'linear-gradient(135deg, rgba(220,38,38,0.12), rgba(153,27,27,0.08))',
+        borderBottom: '1px solid rgba(220,38,38,0.2)',
+        padding: '10px 20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 8,
+        backdropFilter: 'blur(8px)',
+      }}>
+        <span style={{ fontSize: 14 }}>⚠️</span>
+        <span style={{ fontSize: 12, color: '#a3a3a3' }}>
+          <strong style={{ color: '#ef4444' }}>Prototype Mode</strong> — Seeded credentials are for demo only. For production, modify <code style={{ fontSize: 11, color: '#ef4444', background: 'rgba(220,38,38,0.1)', padding: '1px 5px', borderRadius: 3 }}>prisma/seed.js</code>
+        </span>
+      </div>
+
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div className="login-card">
           {/* Brand */}

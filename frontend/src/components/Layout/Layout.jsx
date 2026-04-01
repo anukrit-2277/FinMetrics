@@ -43,18 +43,7 @@ function Layout() {
             <span>— Finance Dashboard</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <Link
-              to="/docs"
-              target="_blank"
-              style={{
-                fontSize: 12,
-                color: '#dc2626',
-                fontWeight: 600,
-                transition: 'color 0.2s',
-              }}
-            >
-              📄 API Docs
-            </Link>
+            <Link to="/docs" target="_blank" style={{ fontSize: 12, color: '#dc2626', fontWeight: 600 }}>📄 API Docs</Link>
             <span>© {new Date().getFullYear()} • React, Express & PostgreSQL</span>
           </div>
         </div>

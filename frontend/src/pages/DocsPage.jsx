@@ -448,6 +448,10 @@ npm run dev               # http://localhost:5173`}
             </CodeBlock>
 
             <h3>Test Accounts (Seeded)</h3>
+            <p style={{ fontSize: 12, color: '#737373', fontStyle: 'italic', marginBottom: 12 }}>
+              ⚠️ These credentials are for <strong style={{ color: '#ef4444' }}>prototype/demo purposes only</strong>. 
+              For production, modify <code>prisma/seed.js</code> or update credentials via the Admin panel.
+            </p>
             <div className="docs-table-wrapper">
               <table className="docs-table">
                 <thead>
@@ -484,12 +488,12 @@ npm test
           <section id="configuration" className="docs-section">
             <h2>Configuration</h2>
 
-            <h3>Environment Variables</h3>
+            <h3>Sample Configuration</h3>
             <CodeBlock title=".env">
-{`DATABASE_URL="postgresql://user:password@localhost:5432/finmetrics"
-PORT=5001
-SESSION_SECRET="your-session-secret-here"
-NODE_ENV=development`}
+{`DATABASE_URL="<your_database_connection_string>"
+PORT=<your_port_number>
+SESSION_SECRET="<your_session_secret_key>"
+NODE_ENV=<development_or_production>`}
             </CodeBlock>
 
             <h3>Rate Limiting</h3>

@@ -65,28 +65,6 @@ function Header({ onMenuToggle }) {
         <h1 className="header-title">{title}</h1>
       </div>
 
-      {/* Center links */}
-      <Link
-        to="/docs"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 6,
-          fontSize: 13,
-          fontWeight: 500,
-          color: '#dc2626',
-          padding: '6px 12px',
-          borderRadius: 6,
-          border: '1px solid rgba(220,38,38,0.2)',
-          backgroundColor: 'rgba(220,38,38,0.06)',
-          transition: 'all 0.2s',
-        }}
-        target="_blank"
-      >
-        <HiOutlineBookOpen style={{ fontSize: 15 }} />
-        Docs
-      </Link>
-
       {/* User menu on the right */}
       <div className="header-actions" ref={menuRef} style={{ position: 'relative' }}>
         <button

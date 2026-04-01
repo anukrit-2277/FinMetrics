@@ -151,13 +151,13 @@ npm run dev    # runs on http://localhost:5173
 
 ---
 
-## Environment Variables
+## Sample Configuration
 
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/finmetrics"
-PORT=5001
-SESSION_SECRET="your-session-secret-here"
-NODE_ENV=development
+DATABASE_URL="<your_database_connection_string>"
+PORT=<your_port_number>
+SESSION_SECRET="<your_session_secret_key>"
+NODE_ENV=<development_or_production>
 ```
 
 ---
