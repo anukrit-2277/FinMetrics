@@ -68,7 +68,7 @@ function LoginPage() {
         </span>
       </div>
 
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 40, paddingBottom: 10 }}>
         <div className="login-card">
           {/* Brand */}
           <div className="login-brand">
@@ -78,7 +78,7 @@ function LoginPage() {
           </div>
 
           {/* Role Toggle Buttons */}
-          <div style={{ marginBottom: 28 }}>
+          <div style={{ marginBottom: 28, textAlign: 'center' }}>
             <p style={{ fontSize: 11, color: '#737373', marginBottom: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
               Select Role to Login
             </p>
@@ -184,46 +184,45 @@ function LoginPage() {
 
       {/* Footer */}
       <footer style={{
-        padding: '20px 32px',
+        padding: '16px 24px',
         borderTop: '1px solid #2a2a2a',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        gap: '8px 20px',
         flexShrink: 0,
         position: 'relative',
         zIndex: 1,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{
-            width: 24,
-            height: 24,
+            width: 20,
+            height: 20,
             background: 'linear-gradient(135deg, #dc2626, #991b1b)',
-            borderRadius: 6,
+            borderRadius: 4,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: 11,
+            fontSize: 9,
             fontWeight: 800,
             color: 'white',
           }}>F</div>
-          <span style={{ fontSize: 13, fontWeight: 600, color: '#a3a3a3' }}>
+          <span style={{ fontSize: 12, fontWeight: 600, color: '#a3a3a3' }}>
             FinMetrics
           </span>
-          <span style={{ fontSize: 12, color: '#737373' }}>
-            — Finance Dashboard System
+          <span style={{ fontSize: 11, color: '#525252' }}>—</span>
+          <span style={{ fontSize: 11, color: '#525252' }}>
+            Finance Dashboard System
           </span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          <span style={{ fontSize: 12, color: '#737373' }}>
-            React • Express • PostgreSQL • Prisma
-          </span>
-          <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-            <Link to="/docs" target="_blank" style={{ fontSize: 12, color: '#dc2626', fontWeight: 600 }}>📄 API Docs</Link>
-            <span style={{ fontSize: 12, color: '#737373' }}>
-              © {new Date().getFullYear()}
-            </span>
-          </div>
-        </div>
+        <span style={{ fontSize: 11, color: '#525252' }}>
+          React • Express • PostgreSQL • Prisma
+        </span>
+        <Link to="/docs" target="_blank" style={{ fontSize: 11, color: '#dc2626', fontWeight: 600, textDecoration: 'none' }}>📄 Docs</Link>
+        <span style={{ fontSize: 11, color: '#525252' }}>
+          © {new Date().getFullYear()}
+        </span>
       </footer>
     </div>
   );
