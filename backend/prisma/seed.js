@@ -6,6 +6,13 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('🌱 Seeding database...\n');
 
+  // --- Clear existing data ---
+  console.log('🗑️  Clearing existing data...');
+  await prisma.transaction.deleteMany({});
+  await prisma.user.deleteMany({});
+  await prisma.role.deleteMany({});
+  console.log('✅ Existing data cleared\n');
+
   // --- Roles ---
   const roles = await Promise.all(
     ['VIEWER', 'ANALYST', 'ADMIN'].map((name) =>
@@ -20,26 +27,22 @@ async function main() {
   const [viewerRole, analystRole, adminRole] = roles;
   console.log('✅ Roles created:', roles.map((r) => r.name).join(', '));
 
-  // --- Users ---
-  const passwordHash = await bcrypt.hash('admin123', 12);
-  const analystHash = await bcrypt.hash('analyst123', 12);
-  const viewerHash = await bcrypt.hash('viewer123', 12);
+  // --- Users with strong passwords (bcrypt 12 rounds) ---
+  const adminHash = await bcrypt.hash('Admin@2025!', 12);
+  const analystHash = await bcrypt.hash('Analyst@2025!', 12);
+  const viewerHash = await bcrypt.hash('Viewer@2025!', 12);
 
-  const admin = await prisma.user.upsert({
-    where: { email: 'admin@finmetrics.com' },
-    update: {},
-    create: {
+  const admin = await prisma.user.create({
+    data: {
       email: 'admin@finmetrics.com',
       name: 'Alex Admin',
-      password: passwordHash,
+      password: adminHash,
       roleId: adminRole.id,
     },
   });
 
-  const analyst = await prisma.user.upsert({
-    where: { email: 'analyst@finmetrics.com' },
-    update: {},
-    create: {
+  const analyst = await prisma.user.create({
+    data: {
       email: 'analyst@finmetrics.com',
       name: 'Anna Analyst',
       password: analystHash,
@@ -47,10 +50,8 @@ async function main() {
     },
   });
 
-  const viewer = await prisma.user.upsert({
-    where: { email: 'viewer@finmetrics.com' },
-    update: {},
-    create: {
+  const viewer = await prisma.user.create({
+    data: {
       email: 'viewer@finmetrics.com',
       name: 'Victor Viewer',
       password: viewerHash,
@@ -61,11 +62,6 @@ async function main() {
   console.log('✅ Users created:', [admin, analyst, viewer].map((u) => u.email).join(', '));
 
   // --- Transactions ---
-  const categories = {
-    INCOME: ['Salary', 'Freelance', 'Investments', 'Dividends', 'Rental Income'],
-    EXPENSE: ['Rent', 'Utilities', 'Groceries', 'Transport', 'Entertainment', 'Healthcare', 'Software', 'Marketing'],
-  };
-
   const transactionData = [
     { amount: 8500.00, type: 'INCOME', category: 'Salary', date: new Date('2025-01-05'), notes: 'January salary', userId: admin.id },
     { amount: 8500.00, type: 'INCOME', category: 'Salary', date: new Date('2025-02-05'), notes: 'February salary', userId: admin.id },
@@ -89,19 +85,15 @@ async function main() {
     { amount: 500.00, type: 'EXPENSE', category: 'Marketing', date: new Date('2025-03-25'), notes: 'Social media ads', userId: admin.id },
   ];
 
-  const txCount = await prisma.transaction.count();
-  if (txCount === 0) {
-    await prisma.transaction.createMany({ data: transactionData });
-    console.log(`✅ ${transactionData.length} transactions created`);
-  } else {
-    console.log(`⏭️  Transactions already exist (${txCount}), skipping`);
-  }
+  await prisma.transaction.createMany({ data: transactionData });
+  console.log(`✅ ${transactionData.length} transactions created`);
 
   console.log('\n🎉 Seeding complete!');
-  console.log('\n📋 Test Accounts:');
-  console.log('   Admin:   admin@finmetrics.com   / admin123');
-  console.log('   Analyst: analyst@finmetrics.com / analyst123');
-  console.log('   Viewer:  viewer@finmetrics.com  / viewer123');
+  console.log('\n📋 Test Accounts (Strong Passwords):');
+  console.log('   Admin:   admin@finmetrics.com   / Admin@2025!');
+  console.log('   Analyst: analyst@finmetrics.com / Analyst@2025!');
+  console.log('   Viewer:  viewer@finmetrics.com  / Viewer@2025!');
+  console.log('\n🔒 Passwords hashed with bcrypt (12 salt rounds)');
 }
 
 main()

@@ -84,12 +84,17 @@ function UserForm({ user, roles, onSubmit, onClose }) {
                   <input
                     type="password"
                     className="form-input"
-                    placeholder="Min 6 characters"
+                    placeholder="Min 8 chars, A-Z, a-z, 0-9, special"
                     value={form.password}
                     onChange={(e) => handleChange('password', e.target.value)}
                     required
-                    minLength={6}
+                    minLength={8}
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$"
+                    title="Min 8 characters with uppercase, lowercase, number and special character"
                   />
+                  <p style={{ fontSize: 11, color: '#737373', marginTop: 4 }}>
+                    Must include: uppercase, lowercase, number, special char (@$!%*?&)
+                  </p>
                 </div>
               </>
             )}

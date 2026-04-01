@@ -87,9 +87,9 @@ function LoginPage() {
         <div style={{ marginTop: 24, padding: '14px 16px', backgroundColor: '#0f0f0f', borderRadius: '8px', border: '1px solid #2a2a2a' }}>
           <p style={{ fontSize: 12, color: '#737373', marginBottom: 8, fontWeight: 600 }}>Demo Accounts</p>
           <div style={{ fontSize: 12, color: '#a3a3a3', lineHeight: 1.8 }}>
-            <div><strong style={{ color: '#dc2626' }}>Admin:</strong> admin@finmetrics.com / admin123</div>
-            <div><strong style={{ color: '#10b981' }}>Analyst:</strong> analyst@finmetrics.com / analyst123</div>
-            <div><strong style={{ color: '#3b82f6' }}>Viewer:</strong> viewer@finmetrics.com / viewer123</div>
+            <div><strong style={{ color: '#dc2626' }}>Admin:</strong> admin@finmetrics.com / Admin@2025!</div>
+            <div><strong style={{ color: '#10b981' }}>Analyst:</strong> analyst@finmetrics.com / Analyst@2025!</div>
+            <div><strong style={{ color: '#3b82f6' }}>Viewer:</strong> viewer@finmetrics.com / Viewer@2025!</div>
           </div>
         </div>
       </div>

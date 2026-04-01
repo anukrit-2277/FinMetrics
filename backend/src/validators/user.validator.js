@@ -10,8 +10,16 @@ const createUserValidator = [
     .isLength({ min: 2, max: 100 })
     .withMessage('Name must be between 2 and 100 characters'),
   body('password')
-    .isLength({ min: 6 })
-    .withMessage('Password must be at least 6 characters'),
+    .isLength({ min: 8 })
+    .withMessage('Password must be at least 8 characters')
+    .matches(/[A-Z]/)
+    .withMessage('Password must contain at least one uppercase letter')
+    .matches(/[a-z]/)
+    .withMessage('Password must contain at least one lowercase letter')
+    .matches(/[0-9]/)
+    .withMessage('Password must contain at least one number')
+    .matches(/[@$!%*?&#^()_+=\-[\]{}|\\:;"'<>,./~`]/)
+    .withMessage('Password must contain at least one special character (@$!%*?&)'),
   body('roleId')
     .isInt({ min: 1 })
     .withMessage('Valid role ID is required'),
