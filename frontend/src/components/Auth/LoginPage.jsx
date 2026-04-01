@@ -122,7 +122,7 @@ function LoginPage() {
 
           {error && <div className="login-error">{error}</div>}
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <div className="form-group">
               <label className="form-label" htmlFor="email">
                 <HiOutlineMail style={{ marginRight: 6, verticalAlign: 'middle' }} />
@@ -137,6 +137,7 @@ function LoginPage() {
                 onChange={(e) => { setEmail(e.target.value); setActiveRole(null); }}
                 required
                 autoFocus
+                autoComplete="off"
               />
             </div>
 
@@ -153,6 +154,7 @@ function LoginPage() {
                 value={password}
                 onChange={(e) => { setPassword(e.target.value); setActiveRole(null); }}
                 required
+                autoComplete="new-password"
               />
             </div>
 
