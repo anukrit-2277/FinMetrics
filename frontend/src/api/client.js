@@ -12,12 +12,7 @@ const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      // If on a protected page, redirect to login
-      if (window.location.pathname !== '/login') {
-        window.location.href = '/login';
-      }
-    }
+    // Let AuthContext handle 401s — don't force redirect here
     return Promise.reject(error);
   }
 );
